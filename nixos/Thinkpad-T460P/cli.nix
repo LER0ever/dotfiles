@@ -6,6 +6,7 @@
     environment.systemPackages = with pkgs; [
         cmus
         syncthing
+        glxinfo
         sshfs-fuse
     ];
 }

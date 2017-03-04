@@ -50,6 +50,11 @@
      screenfetch
   ];
 
+  hardware = {
+    bumblebee.enable = true;
+    cpu.intel.updateMicrocode = true;
+  };
+
   services =
   {
     locate.enable = true;
