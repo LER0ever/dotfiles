@@ -30,6 +30,9 @@
   networking = {
     hostName = "LER0ever-Samsung-NixOS";
     networkmanager.enable = true;
+    firewall = {
+      enable = false;
+    };
   };
 
   # Select internationalisation properties.
@@ -66,6 +69,7 @@
     };
   };
 
+  users.extraGroups.everette.gid = 5000;
     # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.everette = {
     isNormalUser = true;
@@ -81,6 +85,9 @@
     extraGroups=["gogs"];
   };
   
+  users.extraUsers.caddy = {
+  };
+
   users.extraUsers.Cherubim = {
     isNormalUser = true;
     uid = 1003;
