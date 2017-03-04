@@ -1,0 +1,36 @@
+conky.config = {
+	alignment = 'top_middle',
+	background = true,
+	color2 = '588078',
+	cpu_avg_samples = 2,
+	default_color = 'DC143C',
+	double_buffer = true,
+	font = 'Bitstream Vera Sans:size=9',
+	draw_shades = false,
+	gap_x = -50,
+	gap_y = 45,
+	minimum_width = 200,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 2.0,
+	use_xft = true,
+}
+conky.text = [[
+${font Bitstream Vera Sans:size=12}${color #80FFF9}CherubimAI Status
+${font}
+${voffset 8}${color2}• Cherubim Core - ${color}offline
+${voffset 8}${color2}• DDAN Logic Network - ${color}offline
+${voffset 8}${color2}• CNN Vision Module - ${color}offline
+${voffset 8}${color2}• HMM Voice Recognition - ${color}offline
+${voffset 8}${color2}• Hotword Voice Wakeup - ${color #80FFF9}running, orphaned
+${voffset 8}${color2}• NLP Data Unit - ${color}offline
+${voffset 8}${color2}• Facial Recognition - ${color}offline
+${voffset 8}${color2}• VoicePrint Recognition - ${color}offline
+${voffset 8}${color2}• Scheduling Module - ${color #80FFF9}running
+
+${color2}Overall Status - ${color #FFFF00}Unavailable.
+
+]]
+

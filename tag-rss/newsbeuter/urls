@@ -1,0 +1,14 @@
+# query feeds
+#"query:Unread Articles:unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\""
+#"query:Unread Articles (1 year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:365"
+#"query:Unread Articles (1 week old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:7"
+#"query:Unread Articles (primary):unread = \"yes\" and tags # \"primary\""
+
+# Personal
+http://yirong.ml/feed.xml personal
+
+# linux feeds
+https://aosc.io/feed.rss linux
+https://manjaro.org/feed/ linux
+http://freshcode.club/projects.rss linux
+https://fossies.org/fresh.linux.rss linux

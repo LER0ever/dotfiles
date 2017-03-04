@@ -1,0 +1,87 @@
+alignment top_right
+background yes
+border_width 1
+cpu_avg_samples 2
+default_color 80FFF9
+default_outline_color white
+default_shade_color white
+double_buffer yes
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+gap_x 45
+gap_y 30
+maximum_width 450
+max_port_monitor_connections 64
+max_specials 512
+max_user_text 16384
+minimum_size 330 10
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+wm_class_name Conky
+own_window_colour black
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_transparent yes
+own_window_type override
+own_window yes
+stippled_borders 2
+update_interval 2
+uppercase no
+use_spacer yes
+use_xft yes
+xftalpha 0.8
+xftfont  Bitstream Vera Sans Mono:size=9
+
+TEXT
+${voffset 8}$color2${font Bitstream Vera Sans:size=16}${time %A}$font\
+${voffset -8}$alignr${offset -30}$color${font Bitstream Vera Sans:size=45}${time %e}$font
+$color${voffset -30}$color${font Bitstream Vera Sans:size=18}${time %b}$font\
+${voffset -3} ${offset 30} $color${font Bitstream Vera Sans:size=20}${time %Y}$font$color2$hr
+
+${font Bitstream Vera Sans:size=15}${execi 10000 awk -F= '/TION/ {print $2}' /etc/lsb-release |sed 's/"//g'} \
+${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
+${color2}${font Bitstream Vera Sans:size=8}${execi 1200 whoami}@${nodename}${color2}${font Bitstream Vera Sans:size=8}${alignr}kernel: ${color}${kernel}
+${voffset 6}${font}${color #588078}Uptime:$color $uptime ${color #588078} Load:$color $loadavg ${alignr}$color${time %l:%M:%p}
+${color #588078}CPU:$color ${cpu}% ${color #588078}${cpubar 5,85}   ${color #588078}Disk I/O: $color${diskio}
+${color #588078}${cpugraph 0 32,220 104E8B 588078} $alignr${color #588078}${diskiograph 32,220 104E8B 588078 750}
+${color #588078}RAM Usage:$color $mem${color #588078}/${color}$memmax - $memperc% ${color #588078}
+${membar}
+${color #588078}Swap Usage:$color $swap${color #588078}/${color}$swapmax - $swapperc% ${color #588078}${swapbar}
+${color #588078}Procs:$color $processes ${color #588078}Run:$color $running_processes ${color #588078}CPU:$color ${platform coretemp.0 temp 1}${i2c 
+0-002d temp 2}${color #588078} MB:$color ${i2c 0-002d temp 1}
+${color #588078}Entropy: ${color}${entropy_avail}${color #588078}/${color}${entropy_poolsize} ${color #588078}${entropy_bar}
+${color #588078}Net Down:$color ${downspeed wlp3s0}/s      ${color #588078}Net Up:$color ${upspeed wlp3s0}/s
+${color #588078}${downspeedgraph wlp3s0 32,220 104E8B 588078} $alignr${color #588078}${upspeedgraph wlp3s0 32,220 104E8B 588078}
+${color #588078}File systems:
+ ${color #588078}/          $color${fs_used /}/${fs_size /}${alignr}${color #588078}${fs_bar 5,155 /}
+# ${color #588078}/home      $color${fs_used /home}/${fs_size /home}${alignr}${color #588078}${fs_bar 5,155 /home}
+ ${color #588078}/mnt/WinTH $color${fs_used /mnt/WinTH}/${fs_size /mnt/WinTH}${alignr}${color #588078}${fs_bar 5,155 /mnt/WinTH}
+ ${color #588078}/tmp       $color${fs_used /tmp}/${fs_size /tmp}${alignr}${color #588078}${fs_bar 5,155 /tmp}
+ ${color #588078}/boot/efi  $color${fs_used /boot/efi}/${fs_size /boot/efi}${alignr}${color #588077}${fs_bar 5,155 /boot/efi}
+
+${color #588078}Top Processes:
+${color #588078}Name  ${alignr} PID     CPU%   MEM%
+$color ${top name 1}${alignr} ${top pid 1} ${top cpu 1} ${top mem 1}
+$color ${top name 2}${alignr}${top pid 2} ${top cpu 2} ${top mem 2}
+$color ${top name 3}${alignr}${top pid 3} ${top cpu 3} ${top mem 3}
+${color #588078}Mem usage
+$color ${top_mem name 1} ${alignr}${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+$color ${top_mem name 2} ${alignr}${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+$color ${top_mem name 3} ${alignr}${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+ 
+${color #588078}Port(s)${alignr}#Connections
+$color Inbound: ${tcp_portmon 1 32767 count}  Outbound: ${tcp_portmon 32768 61000 count}${alignr}ALL: ${tcp_portmon 1 65535 count}
+${color #588078}Inbound Connection ${alignr} Local Service/Port$color
+ ${tcp_portmon 1 32767 rhost 0} ${alignr} ${tcp_portmon 1 32767 lservice 0}
+ ${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lservice 1}
+ ${tcp_portmon 1 32767 rhost 2} ${alignr} ${tcp_portmon 1 32767 lservice 2}
+${color #588078}Outbound Connection ${alignr} Remote Service/Port$color
+ ${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
+ ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
+ ${tcp_portmon 32768 61000 rhost 2} ${alignr} ${tcp_portmon 32768 61000 rservice 2}
+ ${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 32768 61000 rservice 3}
+ ${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 32768 61000 rservice 4}
+
+
