@@ -11,6 +11,7 @@
     vscode
 
     go
+    go2nix
     nodejs-7_x
     python3
     python27Full

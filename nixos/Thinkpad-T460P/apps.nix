@@ -6,17 +6,18 @@
         google-chrome
         # firefox
 
-	# Social 
+        # Social 
         tdesktop
 
-	# Media
+        # Media
         mpd
         cantata
         vlc
 
-	# Productivity
-	libreoffice
+        # Productivity
+        libreoffice
         thunderbird
+        goldendict
 
     ];
 
