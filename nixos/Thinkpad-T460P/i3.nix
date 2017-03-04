@@ -13,6 +13,7 @@
 		i3blocks
 		font-awesome-ttf
 		conky
+		acpi
 		terminator
 		pcmanfm
 		nitrogen
