@@ -39,7 +39,7 @@ bindsym $mod+Return exec terminator
 bindsym $mod+Shift+q kill
 
 # start program launcher
-# bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+Shift+x exec --no-startup-id dmenu_recency
 
 # start rofi
 bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun,run,ssh -show combi -modi combi"
@@ -48,10 +48,10 @@ bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun,run,ssh -show 
 bindsym $mod+z exec --no-startup-id morc_menu
 
 # Sound Section
-exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
+#exec --no-startup-id volumeicon
+##bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id pulseaudio
+exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
 # Screen brightness controls
@@ -64,6 +64,7 @@ bindsym $mod+F2 exec --no-startup-id palemoon
 bindsym $mod+F3 exec --no-startup-id pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
+bindsym $mod+F4 exec --no-startup-id nvim-qt
 bindsym $mod+F5 exec terminal -e 'htop'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
@@ -272,11 +273,11 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id i3lock -f #blurlock
+bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id synclient VertScrollDelta=-111 TapButton1=1 TapButton2=3 TapButton3=2
+exec --no-startup-id synclient VertScrollDelta=-111 TapButton1=1 TapButton2=3 TapButton3=2 PalmDetect=1 PalmMinWidth=8 PalmMinZ=100
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
@@ -287,14 +288,14 @@ exec --no-startup-id fcitx
 # exec --no-startup-id blueman
 # exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
-exec --no-startup-id conky -c ~/.config/conky/conky_cherubim
-exec --no-startup-id conky -c ~/.config/conky/conky_i3shortcuts
-exec --no-startup-id conky -c ~/.config/conky/conky_weather
-exec --no-startup-id conky -c ~/.config/conky/conky_rss
-exec --no-startup-id conky -c ~/.config/conky/conky_status
-exec --no-startup-id conky -c ~/.config/conky/conky_webmonitor
+#exec --no-startup-id conky -c ~/.config/conky/conky_cherubim
+#exec --no-startup-id conky -c ~/.config/conky/conky_i3shortcuts
+#exec --no-startup-id conky -c ~/.config/conky/conky_weather
+#exec --no-startup-id conky -c ~/.config/conky/conky_rss
+#exec --no-startup-id conky -c ~/.config/conky/conky_status
+#exec --no-startup-id conky -c ~/.config/conky/conky_webmonitor
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker "i3lock -f" #blurlock
+exec --no-startup-id xautolock -time 10 -locker blurlock -bell 0
 exec_always --no-startup-id fix_xcursor
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
@@ -308,12 +309,12 @@ bar {
 
     bindsym button4 nop
     bindsym button5 nop
-    font xft:Noto Sans 15
+    font xft:FuraCode Nerd Font 12
     strip_workspace_numbers yes
 
     colors {
 #   background $transparent
-        background #2B2C2B
+        background #001C2D
         statusline #F9FAF9
         separator  #454947
 
@@ -323,8 +324,9 @@ bar {
 #       inactive_workspace #595B5B #353836 #EEE8D5
 #       urgent_workspace   #16A085 #FDF6E3 #E5201D
 
+# 001c2d
 
-        focused_workspace  #16A085 #16A085 #2B2C2B
+        focused_workspace  #16A085 #16A085 #001C2D
         active_workspace   #353836 #353836 #FDF6E3
         inactive_workspace #353836 #353836 #EEE8D5
         urgent_workspace   #16A085 #FDF6E3 #E5201D
@@ -336,8 +338,14 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                 border  backgr. text    indic.  child_border
-client.focused          #808280 #808280 #80FFF9 #FDF6E3
-client.focused_inactive #434745 #434745 #16A085 #454948
+#client.focused          #48d6f9 #808280 #80FFF9 #FDF6E3
+#client.focused_inactive #434745 #434745 #16A085 #454948
+#client.unfocused        #434745 #434745 #16A085 #454948
+#client.urgent           #CB4B16 #FDF6E3 #16A085 #268BD2
+#client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+client.focused          #48d6f9 #48d6f9 #80FFF9 #FDF6E3
+client.focused_inactive #808280 #808280 #16A085 #454948
 client.unfocused        #434745 #434745 #16A085 #454948
 client.urgent           #CB4B16 #FDF6E3 #16A085 #268BD2
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
@@ -349,8 +357,8 @@ client.background       #2B2C2B
 #############################
 
 # Set inner/outer gaps
-gaps inner 0
-gaps outer 0
+gaps inner 8
+gaps outer 5
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
